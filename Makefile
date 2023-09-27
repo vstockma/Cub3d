@@ -3,59 +3,53 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: valentin <valentin@student.42.fr>          +#+  +:+       +#+         #
+#    By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/07/10 19:33:03 by valentin          #+#    #+#              #
-#    Updated: 2023/07/10 19:56:53 by valentin         ###   ########.fr        #
+#    Created: 2023/08/21 16:44:47 by ddyankov          #+#    #+#              #
+#    Updated: 2023/09/26 13:28:45 by vstockma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cub3d
+RED_BACK = \033[0;101m
+GREEN_BACK = \033[0;102m
+COLOUR_END = \033[0m
 
-SRC = main.c main_utils.c map_check.c free.c get_file_input.c
+NAME = cub3D
 
-OBJ = $(SRC:.c=.o)
+SRC = main.c init.c main_utils.c map_check.c free.c map_check_walls.c map_manipulation.c input_check_colors.c input_check_textures.c input_receiving.c
 
-CFLAGS = -g -Wall -Werror -Wextra
+OBJ = $(patsubst %.c, obj/%.o, $(SRC))
 
-CC = cc
+CFLAGS = -gdwarf-4 -g -Wall -Werror -Wextra -g -MMD -MP
 
-RM = rm -f
+MLXFLAGS  = -I ./mlx -L ./mlx -lmlx -lXext -lX11 -lm
 
-MLX_PATH = mlx/
+LIBFT = libft/libft.a
 
-MLX_LIB = $(MLX_PATH)libmlx.a
+obj/%.o: %.c
+		@mkdir -p obj
+		@cc $(CFLAGS) -c $< -o $@
 
-MLX_FLAGS = -lXext -lX11 -lm -lpthread -ldl -fPIE
+all: $(NAME)
 
-LIBFT_PATH = libft/
+$(NAME): $(OBJ) $(LIBFT) $(MLX)
+	@clang-12 $(CFLAGS) $(OBJ) $(MLXFLAGS) $(LIBFT) -o $(NAME)
+	@echo "$(GREEN_BACK)✅✅✅Executable $(NAME) is ready✅✅✅$(COLOUR_END)"
+	
+$(LIBFT):
+	@make -C libft -s
 
-LIBFT_LIB = $(LIBFT_PATH)libft.a
-
-.PHONY: all clean fclean re
-
-all: comp $(NAME)
-
-.c.o:
-	$(CC) $(CFLAGS) -g -c $< -o $(<:.c=.o)
-
-comp:
-	@echo $(B)
-	make -C $(LIBFT_PATH) all
-	@echo $(B)
-	make -C $(MLX_PATH) all
-
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) $(MLX_LIB) $(MLX_FLAGS) $(LIBFT_LIB) -o $(NAME)
-
+$(MLX):
+	@make -C mlx -s
+	
 clean:
-	@$(RM) $(OBJ)
-	@make -C $(LIBFT_PATH) clean
-	@make -C $(MLX_PATH) clean
-
+	@rm -rf obj
+	@make clean -C libft -s
+	@echo "$(RED_BACK)🧹🧹🧹obj folder was cleaned🧹🧹🧹$(COLOUR_END)"
+	
 fclean: clean
-	$(RM) $(NAME)
-	@make -C $(LIBFT_PATH) fclean
-	@make -C $(MLX_PATH) fclean
+	@rm -f $(NAME)	
+	@make fclean -C libft -s
+	@echo "$(RED_BACK)🧹🧹🧹Executable was cleaned🧹🧹🧹$(COLOUR_END)"
 
 re: fclean all

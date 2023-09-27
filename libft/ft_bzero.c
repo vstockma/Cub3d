@@ -1,31 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_file_input.c                                   :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/10 19:56:26 by valentin          #+#    #+#             */
-/*   Updated: 2023/07/10 20:01:18 by valentin         ###   ########.fr       */
+/*   Created: 2022/10/06 08:48:54 by ddyankov          #+#    #+#             */
+/*   Updated: 2023/06/28 17:44:48 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d"
+#include "libft.h"
 
-int ft_get_textures(t_var *vars)
+void	ft_bzero(void *s, size_t n)
 {
-
-    return (0);
-}
-
-int ft_get_colours(t_var *vars)
-{
-
-    return (0);
-}
-
-int ft_get_map(t_var *vars)
-{
-
-    return (0);
+	ft_memset(s, 0, n);
 }

@@ -3,68 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   main_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:17:18 by valentin          #+#    #+#             */
-/*   Updated: 2023/07/10 20:00:53 by valentin         ###   ########.fr       */
+/*   Updated: 2023/09/27 10:39:40 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cube3d.h"
 
-void    ft_init_struct(t_var *vars)
+int	ft_handle_input(t_game *game)
 {
-    vars->lines = 0;
-    vars->i = 0;
+	ft_get_file_content(game);
+	ft_check_map(game);
+	ft_get_player_position(game);
+	ft_free_2d_arr(game->content);
+	free(game->file_name);
+	return (0);
 }
 
-void	ft_linecount(int fd, t_var *vars)
+int	ft_linecount(int fd)
 {
-	int		n;
 	char	*line;
+	int		count;
 
-	n = 1;
-	line = malloc(2);
-	while (n > 0)
+	count = 0;
+	while (1)
 	{
-		n = read(fd, line, BUFFER_SIZE);
-		if (n == -1)
-            return ;
-		line[n] = '\0';
-		if (ft_strchr(line, '\n'))
-			vars->lines++;
+		line = get_next_line(fd);
+		if (line == NULL)
+			break ;
+		free(line);
+		count++;
 	}
 	free(line);
 	line = NULL;
 	close(fd);
-}
-
-int ft_get_file_content(int fd, t_var *vars)
-{
-    int	i;
-
-	i = 0;
-	ft_linecount(fd, vars);
-	fd = open(vars->file, O_RDONLY);
-	vars->input = malloc(sizeof(char *) * (vars->lines + 1));
-	while (i < vars->lines)
-	{
-		vars->input[i] = get_next_line(fd);
-		i++;
-	}
-	vars->input[vars->lines] = NULL;
-	close(fd);
-    return (0);
-}
-
-int ft_extract_input(t_var *vars)
-{
-    while (vars->i < vars->lines)
-    {
-        ft_get_textures(vars);
-        ft_get_colours(vars);
-        ft_get_map(vars);
-        vars->i++;
-    }
-    return (0);
+	return (count);
 }
