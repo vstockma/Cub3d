@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_check_walls.c                                  :+:      :+:    :+:   */
+/*   map_check_walls_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 16:52:45 by vstockma          #+#    #+#             */
-/*   Updated: 2023/10/09 16:03:00 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/10 14:33:47 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
+#include "cube3d_bonus.h"
 
 static int	ft_check_top_row(t_game *game, int i, int j)
 {

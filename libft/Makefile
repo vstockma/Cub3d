@@ -6,7 +6,7 @@
 #    By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 13:14:30 by ddyankov          #+#    #+#              #
-#    Updated: 2023/08/01 11:12:16 by vstockma         ###   ########.fr        #
+#    Updated: 2023/10/06 14:38:26 by vstockma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRC = ft_atoi.c \
 	ft_check_if_pipe.c \
 	ft_free_2d_arr.c \
 	ft_get_len_for_char.c \
-	ft_get_len_if_double.c \
+	ft_get_len_if_float.c \
 	ft_get_len_if_single.c \
 	ft_get_value_from_env.c \
 	ft_isalnum.c \

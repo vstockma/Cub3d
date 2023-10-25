@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_manipulation.c                                 :+:      :+:    :+:   */
+/*   map_manipulation_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 16:53:08 by vstockma          #+#    #+#             */
-/*   Updated: 2023/10/10 12:11:32 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/10 14:33:47 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
+#include "cube3d_bonus.h"
 
 static int	ft_insert_x_right(t_game *game, int i, int j)
 {

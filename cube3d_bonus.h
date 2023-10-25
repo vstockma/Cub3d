@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cube3d.h                                           :+:      :+:    :+:   */
+/*   cube3d_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:50:02 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/11 09:05:11 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/11 09:04:51 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE3D_H
-# define CUBE3D_H
+#ifndef CUBE3D_BONUS_H
+# define CUBE3D_BONUS_H
 
 # include "libft/libft.h"
 # include <X11/keysym.h>
@@ -154,6 +154,7 @@ int				ft_key_release(int key, t_game *game);
 // move.c
 void			ft_move(t_game *game);
 void			ft_rays(t_game *game);
+void			ft_rotate(t_game *game, float angle);
 
 // rays.c
 void			ft_calculate_wall(t_game *game);

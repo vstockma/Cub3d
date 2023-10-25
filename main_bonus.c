@@ -1,16 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:49:32 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/15 10:14:07 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/15 10:14:20 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
+#include "cube3d_bonus.h"
+
+static int	ft_mouse_rotate(int x, int y, t_game *game)
+{
+	(void)y;
+	if (x > (game->screen_width / 1.5))
+	{
+		ft_rotate(game, -ROTATE_SPEED * 4);
+		mlx_mouse_move(game->mlx, game->win, game->screen_height / 2,
+			game->screen_width / 2);
+	}
+	else if (x < (game->screen_width / 4))
+	{
+		ft_rotate(game, ROTATE_SPEED * 6);
+		mlx_mouse_move(game->mlx, game->win, game->screen_height / 2,
+			game->screen_width / 2);
+	}
+	return (0);
+}
 
 int	ft_close_x(t_game *game)
 {
@@ -28,6 +46,7 @@ int	render(t_game *game)
 	ft_draw_background(game);
 	ft_rays(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.mlx_img, 0, 0);
+	ft_draw_2d_map(game);
 	return (0);
 }
 
@@ -52,6 +71,9 @@ int	main(int ac, char **av)
 	mlx_hook(game.win, 2, 1L << 0, ft_key_press, &game);
 	mlx_hook(game.win, 3, 1L << 1, ft_key_release, &game);
 	mlx_hook(game.win, 17, 1L << 17, ft_close_x, &game);
+	mlx_hook(game.win, 6, 1L << 6, ft_mouse_rotate, &game);
+	mlx_mouse_move(game.mlx, game.win, game.screen_height / 2, game.screen_width
+		/ 2);
 	mlx_loop(game.mlx);
 	return (0);
 }

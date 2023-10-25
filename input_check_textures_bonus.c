@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input_check_textures.c                             :+:      :+:    :+:   */
+/*   input_check_textures_bonus.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 16:59:14 by vstockma          #+#    #+#             */
-/*   Updated: 2023/10/10 12:54:39 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/10 14:33:47 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
+#include "cube3d_bonus.h"
 
 void	ft_check_for_double_tex(t_game *game, const char *tex)
 {
